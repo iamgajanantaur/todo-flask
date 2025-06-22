@@ -23,11 +23,12 @@ CREATE TABLE IF NOT EXISTS tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     status ENUM('Pending', 'Completed') DEFAULT 'Pending',
+    priority ENUM('Low', 'Medium', 'High') DEFAULT 'Medium',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     completed_at TIMESTAMP NULL DEFAULT NULL,
     user_id INT NOT NULL,
-    priority ENUM('Low', 'Medium', 'High') DEFAULT 'Medium' AFTER status,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     INDEX idx_user_id (user_id),
     INDEX idx_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
